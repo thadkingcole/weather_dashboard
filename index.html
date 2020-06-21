@@ -4,10 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
+    <!-- Bootstrap CSS CDN -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
   </head>
@@ -20,11 +28,18 @@
     <div class="container-fluid">
       <div class="row">
         <aside class="col-4 bg-light">
-          <p>Search for a City:</p>
-          <p>text field ... <button>search</button></p>
-          <p>list of cities</p>
-          <p>the user has</p>
-          <p>searched for before</p>
+          <!-- search for a city form -->
+          <form class="form-inline">
+            <label for="city">Search for a City:</label>
+            <input class="form-control" id="city" type="text" />
+            <button class="btn-primary" type="submit">search</button>
+            <div class="d-flex flex-column align-content-stretch text-secondary">
+              <!-- history of cities searched -->
+              <div class="p-2 bg-white border">Austin</div>
+              <div class="p-2 bg-white border">Chicago</div>
+              <div class="p-2 bg-white border">New York</div>
+            </div>
+          </form>
         </aside>
         <!-- right of page -->
         <main class="col-8">
