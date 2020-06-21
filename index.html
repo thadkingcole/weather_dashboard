@@ -27,39 +27,80 @@
     <!-- left of page -->
     <div class="container-fluid">
       <div class="row">
-        <aside class="col-4 bg-light">
+        <aside class="col-3 bg-light">
           <!-- search for a city form -->
-          <form class="form-inline">
-            <label for="city">Search for a City:</label>
-            <input class="form-control" id="city" type="text" />
-            <button class="btn btn-primary" type="submit">search</button>
-            <div
-              class="d-flex flex-column align-content-stretch text-secondary"
-            >
-              <!-- history of cities searched -->
-              <div class="p-2 bg-white border">Austin</div>
-              <div class="p-2 bg-white border">Chicago</div>
-              <div class="p-2 bg-white border">New York</div>
-            </div>
+          <form class="form-inline my-3">
+            <label class="lead" for="city">Search for a City:</label>
+            <input
+              id="city"
+              class="form-control"
+              type="text"
+              autofocus
+            />
+            <button class="btn btn-primary" type="submit">Q</button>
           </form>
+          <div class="d-flex flex-column text-secondary">
+            <!-- history of cities searched -->
+            <div class="p-2 bg-white border">Austin</div>
+            <div class="p-2 bg-white border">Chicago</div>
+            <div class="p-2 bg-white border">New York</div>
+          </div>
         </aside>
         <!-- right of page -->
         <main class="col-8">
           <!-- selected city weather data -->
           <div class="row">
-            <div class="col-12 border">
-              <h2>Atlanta (06/09/2020) {icon}</h2>
-              <p>Temperature: 90.9 F</p>
+            <div class="col-12 border m-3 p-4">
+              <h2 class="pb-3">Atlanta (06/09/2020) {icon}</h2>
+              <p>Temperature: 90.9 &deg;F</p>
               <p>Humidity: 41%</p>
               <p>Wind Speed: 4.7 MPH</p>
-              <p>UV index: color-coded</p>
+              <p>
+                UV index: <span class="bg-danger text-light p-2">9.49</span>
+              </p>
             </div>
           </div>
           <!-- 5-day forcast for selected city -->
           <div class="row">
             <div class="col-12">
               <h3>5-day Forecast:</h3>
-              <p>each day will have its own card</p>
+              <div class="card-deck">
+                <!-- day 1 -->
+                <div class="card bg-primary text-light p-2">
+                  <p class="card-text">06/10/2020</p>
+                  <p class="card-text">{icon}</p>
+                  <p class="card-text small">Temp: 86.8 &deg;F</p>
+                  <p class="card-text small">Humidity: 43%</p>
+                </div>
+                <!-- day 2 -->
+                <div class="card bg-primary text-light p-2">
+                  <p class="card-text">06/11/2020</p>
+                  <p class="card-text">{icon}</p>
+                  <p class="card-text small">Temp: 86.8 &deg;F</p>
+                  <p class="card-text small">Humidity: 43%</p>
+                </div>
+                <!-- day 3 -->
+                <div class="card bg-primary text-light p-2">
+                  <p class="card-text">06/12/2020</p>
+                  <p class="card-text">{icon}</p>
+                  <p class="card-text small">Temp: 86.8 &deg;F</p>
+                  <p class="card-text small">Humidity: 43%</p>
+                </div>
+                <!-- day 4 -->
+                <div class="card bg-primary text-light p-2">
+                  <p class="card-text">06/13/2020</p>
+                  <p class="card-text">{icon}</p>
+                  <p class="card-text small">Temp: 86.8 &deg;F</p>
+                  <p class="card-text small">Humidity: 43%</p>
+                </div>
+                <!-- day 5 -->
+                <div class="card bg-primary text-light p-2">
+                  <p class="card-text">06/14/2020</p>
+                  <p class="card-text">{icon}</p>
+                  <p class="card-text small">Temp: 86.8 &deg;F</p>
+                  <p class="card-text small">Humidity: 43%</p>
+                </div>
+              </div>
             </div>
           </div>
         </main>
