@@ -1,24 +1,35 @@
-const cityName = "New York", // from user seach/city click
-  apiKey = "8aeca2ffebc6962c43c0e96825f3d12b", // for openweathermap.org
-  currentURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`; // current weather api from openweathermap.org
-// let lat = 0, // latitude to be set later
-//   lon = 0; // longitiude to be set later
+// Global Variables
+const apiKey = "8aeca2ffebc6962c43c0e96825f3d12b", // for openweathermap.org
+  units = "imperial"; // parameter to return degress F from API
 
-$.ajax({
-  url: currentURL, // current weather api
-  method: "GET",
-}).then(function (response) {
-  console.log("Current Weather API", response);
-  // build One Call API queryURL
-  const lat = response.coord.lat,
-    lon = response.coord.lon,
-    part = "minutely,hourly",
-    oneCallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${apiKey}`;
+// Functions
+function getWeather(city) {
+  const currentURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`; // current weather api from openweathermap.org
 
+  // openweathermap.org Current Weather API
   $.ajax({
-    url: oneCallURL,
+    url: currentURL,
     method: "GET",
   }).then(function (response) {
-    console.log("One Call API", response);
+    console.log("Current Weather API", response);
+    // build One Call API queryURL
+    const lat = response.coord.lat, // latitude for One Call API
+      lon = response.coord.lon, // longitude for One Call API
+      part = "minutely,hourly", // parts to exclude in One Call API
+      oneCallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=${part}&appid=${apiKey}`,
+      // put city name in main section
+      cityName = response.name,
+      cityDate = moment.unix(response.dt).format("MM/DD/YYYY");
+    $("#city-name").text(`${cityName} (${cityDate}) icon`);
+
+    // openweathermap.org One Call API
+    $.ajax({
+      url: oneCallURL,
+      method: "GET",
+    }).then(function (response) {
+      console.log("One Call API", response);
+      // update rest of page with city weather data
+      // ...
+    });
   });
-});
+}
