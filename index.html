@@ -47,13 +47,14 @@
         <main class="col-8">
           <!-- selected city weather data -->
           <div class="row">
-            <div class="col-12 border m-3 p-4">
+            <div class="col-12 border m-3 p-3">
               <h2 id="city-name">City (MM/DD/YYYY) {icon}</h2>
               <p>Temperature: <span id="current-temp">##.##</span> &deg;F</p>
-              <p>Humidity: 41%</p>
-              <p>Wind Speed: 4.7 MPH</p>
+              <p>Humidity: <span id="current-humid">##</span>%</p>
+              <p>Wind Speed: <span id="wind">#.##</span> MPH</p>
               <p>
-                UV index: <span class="bg-danger text-light p-2">9.49</span>
+                UV index:
+                <span id="UV" class="bg-danger text-light p-2">#.##</span>
               </p>
             </div>
           </div>
@@ -61,39 +62,39 @@
           <div class="row">
             <div class="col-12">
               <h3>5-day Forecast:</h3>
-              <div class="card-deck">
+              <div id="forecast" class="card-deck">
                 <!-- day 1 -->
-                <div class="card bg-primary text-light p-2">
-                  <p class="card-text">06/10/2020</p>
-                  <p class="card-text">{icon}</p>
+                <div id="day1" class="card bg-primary text-light p-2">
+                  <p class="card-title">06/10/2020</p>
+                  <img src="#" alt="icon" width="50" />
                   <p class="card-text small">Temp: 86.8 &deg;F</p>
                   <p class="card-text small">Humidity: 43%</p>
                 </div>
                 <!-- day 2 -->
-                <div class="card bg-primary text-light p-2">
-                  <p class="card-text">06/11/2020</p>
-                  <p class="card-text">{icon}</p>
+                <div id="day2" class="card bg-primary text-light p-2">
+                  <p class="card-title">06/11/2020</p>
+                  <img src="#" alt="icon" width="50" />
                   <p class="card-text small">Temp: 86.8 &deg;F</p>
                   <p class="card-text small">Humidity: 43%</p>
                 </div>
                 <!-- day 3 -->
-                <div class="card bg-primary text-light p-2">
-                  <p class="card-text">06/12/2020</p>
-                  <p class="card-text">{icon}</p>
+                <div id="day3" class="card bg-primary text-light p-2">
+                  <p class="card-title">06/12/2020</p>
+                  <img src="#" alt="icon" width="50" />
                   <p class="card-text small">Temp: 86.8 &deg;F</p>
                   <p class="card-text small">Humidity: 43%</p>
                 </div>
                 <!-- day 4 -->
-                <div class="card bg-primary text-light p-2">
-                  <p class="card-text">06/13/2020</p>
-                  <p class="card-text">{icon}</p>
+                <div id="day4" class="card bg-primary text-light p-2">
+                  <p class="card-title">06/13/2020</p>
+                  <img src="#" alt="icon" width="50" />
                   <p class="card-text small">Temp: 86.8 &deg;F</p>
                   <p class="card-text small">Humidity: 43%</p>
                 </div>
                 <!-- day 5 -->
-                <div class="card bg-primary text-light p-2">
-                  <p class="card-text">06/14/2020</p>
-                  <p class="card-text">{icon}</p>
+                <div id="day5" class="card bg-primary text-light p-2">
+                  <p class="card-title">06/14/2020</p>
+                  <img src="#" alt="icon" width="50" />
                   <p class="card-text small">Temp: 86.8 &deg;F</p>
                   <p class="card-text small">Humidity: 43%</p>
                 </div>

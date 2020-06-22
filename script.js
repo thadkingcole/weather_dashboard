@@ -34,8 +34,32 @@ function getWeather(city) {
       method: "GET",
     }).then(function (response) {
       console.log("One Call API", response);
-      // update rest of page with city weather data
-      // ...
+      // update city current weather data
+      $("#current-temp").text(response.current.temp.toFixed(1));
+      $("#current-humid").text(response.current.humidity);
+      $("#wind").text(response.current.wind_speed);
+      $("#UV").text(response.current.uvi);
+      // update 5-day forecast for city
+      $("#forecast").empty(); // removes currently displayed 5-day forcast
+      for (let i = 1; i <= 5; i++) {
+        // start at 1 because 5 day forecast starts with tomorrow
+        // get daily data from response
+        const data = response.daily[i],
+          date = moment.unix(data.dt).format("MM/DD/YYYY"),
+          iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+          iconAlt = data.weather[0].description,
+          temp = `Temp: ${data.temp.day.toFixed(1)} &deg;F`,
+          humid = `Humidity: ${data.humidity}%`,
+          // display that data on forecast card
+          cardEl = $("<div>").addClass("card bg-primary text-light p-2");
+
+        cardEl.append($("<p>").addClass("card-title").text(date));
+        cardEl.append($("<img>").attr("src", iconURL).attr("alt", iconAlt).attr("width", 50));
+        cardEl.append($("<p>").addClass("card-text small").html(temp));
+        cardEl.append($("<p>").addClass("card-text small").text(humid));
+
+        $("#forecast").append(cardEl);
+      }
     });
   });
 }
