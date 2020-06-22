@@ -1,4 +1,5 @@
 // Global Variables
+/* global moment from moment.js*/
 const apiKey = "8aeca2ffebc6962c43c0e96825f3d12b", // for openweathermap.org
   units = "imperial"; // parameter to return degress F from API
 
@@ -12,15 +13,20 @@ function getWeather(city) {
     method: "GET",
   }).then(function (response) {
     console.log("Current Weather API", response);
-    // build One Call API queryURL
     const lat = response.coord.lat, // latitude for One Call API
       lon = response.coord.lon, // longitude for One Call API
-      part = "minutely,hourly", // parts to exclude in One Call API
-      oneCallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=${part}&appid=${apiKey}`,
-      // put city name in main section
+      parts = "minutely,hourly", // parts to exclude in One Call API
+      oneCallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=${parts}&appid=${apiKey}`,
       cityName = response.name,
-      cityDate = moment.unix(response.dt).format("MM/DD/YYYY");
-    $("#city-name").text(`${cityName} (${cityDate}) icon`);
+      todaysDate = moment.unix(response.dt).format("MM/DD/YYYY"),
+      currentIconURL = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`,
+      currentIconAlt = response.weather[0].description;
+
+    // display city name, date, & weather icon in main section header
+    $("#city-name").text(`${cityName} (${todaysDate})`);
+    $("#city-name").append(
+      $("<img>").attr("src", currentIconURL).attr("alt", currentIconAlt)
+    );
 
     // openweathermap.org One Call API
     $.ajax({
