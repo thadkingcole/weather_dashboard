@@ -4,9 +4,21 @@ const apiKey = "8aeca2ffebc6962c43c0e96825f3d12b", // for openweathermap.org
   units = "imperial", // parameter to return degress F from API
   // from local storage...
   currentCity = localStorage.getItem("current"); // city to display on load
-let cityHistory = localStorage.getItem("history"); // search history
+let cities = JSON.parse(localStorage.getItem("history"));
+if (!cities) {
+  cities = { history: [] };
+}
 
 // Functions
+function updateHistory() {
+  // clear history before update to prevent duplicates
+  $("#history").empty();
+  cities.history.forEach((city) => {
+    const cityEl = $("<div>").addClass("p-2 bg-white border").text(city);
+    $("#history").append(cityEl);
+  });
+}
+
 function getWeather(city) {
   const currentURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`; // current weather api from openweathermap.org
 
@@ -29,20 +41,15 @@ function getWeather(city) {
     $("#city-name").append(
       $("<img>").attr("src", currentIconURL).attr("alt", currentIconAlt)
     );
-
+    
     // add city to local storage & search history
     localStorage.setItem("current", cityName);
-    if (cityHistory) {
-      // if cityHistory exists...
-      if (!cityHistory.includes(cityName)) {
-        // if cityName not in cityHistory..
-        cityHistory.unshift(cityName);
-      }
-    } else {
-      // cityHistory doesn't exist
-      cityHistory = [cityName]; // initilize array with cityName
+    if (!cities.history.includes(cityName)) {
+      // if cityName not in cities.history..
+      cities.history.unshift(cityName);
     }
-    localStorage.setItem("history", cityHistory);
+    updateHistory(); // update list of cities on sidebar
+    localStorage.setItem("history", JSON.stringify(cities));
 
     // openweathermap.org One Call API
     $.ajax({
@@ -59,12 +66,11 @@ function getWeather(city) {
       for (let i = 1; i <= 5; i++) {
         // start at 1 because 5 day forecast starts with tomorrow
         // get daily data from response
-        const data = response.daily[i],
-          date = moment.unix(data.dt).format("MM/DD/YYYY"),
-          iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
-          iconAlt = data.weather[0].description,
-          temp = `Temp: ${data.temp.day.toFixed(1)} &deg;F`,
-          humid = `Humidity: ${data.humidity}%`,
+        const date = moment.unix(response.daily[i].dt).format("MM/DD/YYYY"),
+          iconURL = `https://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}.png`,
+          iconAlt = response.daily[i].weather[0].description,
+          temp = `Temp: ${response.daily[i].temp.day.toFixed(1)} &deg;F`,
+          humid = `Humidity: ${response.daily[i].humidity}%`,
           // display that data on forecast card
           cardEl = $("<div>").addClass("card bg-primary text-light p-2");
 
@@ -90,4 +96,4 @@ if (currentCity) {
 } else {
   getWeather("Raleigh");
 }
-// load city search history
+
