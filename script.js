@@ -53,11 +53,17 @@ function getWeather(city) {
       lon = response.coord.lon, // longitude for One Call API
       parts = "minutely,hourly", // parts to exclude in One Call API
       oneCallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=${parts}&appid=${apiKey}`,
-      cityName = response.name,
       todaysDate = moment.unix(response.dt).format("MM/DD/YYYY"),
       currentIconURL = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`,
       currentIconAlt = response.weather[0].description;
-      
+    let cityName = response.name;
+    
+    if (city.includes(",")) {
+      stateCountry = city.split(",")
+      for (let i = 1; i < stateCountry.length; i++) {
+        cityName += `, ${stateCountry[i].trim().toUpperCase()}`
+      }
+    }
     // display city name, date, & weather icon in main section header
     $("#city-name").text(`${cityName} (${todaysDate})`);
     $("#city-name").append(
