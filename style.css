@@ -1,8 +1,12 @@
 /* styling for red X for deleting cities from history */
 .city-delete {
-  opacity: 0;
+  opacity: 0.1;
 }
 
 .city-delete:hover {
   opacity: 1;
+}
+
+.city-history:hover {
+  opacity: 0.7;
 }

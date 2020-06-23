@@ -18,12 +18,14 @@ function updateHistory() {
     // then create a new div with the city name name
     const cityEl = $("<div>")
       .attr("data-city", city)
-      .addClass("p-2 bg-white border city-history")
+      .addClass("text-muted p-2 bg-white border city-history")
       .text(city);
     // add delete button
     cityEl.append(
       $("<span>")
-        .addClass("bg-danger text-light px-1 float-right city-delete")
+        .addClass(
+          "text-danger px-1 float-right border border-danger rounded city-delete"
+        )
         .text("X")
     );
     // and add it to the history ID
