@@ -17,11 +17,26 @@ function updateHistory() {
   cities.history.forEach((city) => {
     // then create a new div with the city name name
     const cityEl = $("<div>")
+      .attr("data-city", city)
       .addClass("p-2 bg-white border city-history")
       .text(city);
+    // add delete button
+    cityEl.append(
+      $("<span>")
+        .addClass("bg-danger text-light px-1 float-right city-delete")
+        .text("X")
+    );
     // and add it to the history ID
     $("#history").append(cityEl);
   });
+  // save cities to localstorage
+  localStorage.setItem("history", JSON.stringify(cities));
+}
+
+function deleteCity(city) {
+  const delIndex = cities.history.indexOf(city);
+  cities.history.splice(delIndex, 1);
+  updateHistory();
 }
 
 function getWeather(city) {
@@ -54,7 +69,6 @@ function getWeather(city) {
       cities.history.unshift(cityName);
     }
     updateHistory(); // update list of cities on sidebar
-    localStorage.setItem("history", JSON.stringify(cities));
 
     // openweathermap.org One Call API
     $.ajax({
@@ -123,5 +137,11 @@ $("#search").click(function (event) {
 
 // search history event listener
 $("#history").on("click", ".city-history", function () {
-  getWeather($(this).text());
+  getWeather($(this).attr("data-city"));
 });
+
+// search history delete event listener
+$("#history").on("click", ".city-delete", function(event) {
+  event.stopPropagation();
+  deleteCity($(this).parent().attr("data-city"));
+})
