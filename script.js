@@ -59,7 +59,10 @@ function getWeather(city) {
     // display city name, date, & weather icon in main section header
     $("#city-name").text(`${cityName} (${todaysDate})`);
     $("#city-name").append(
-      $("<img>").attr("src", currentIconURL).attr("alt", currentIconAlt)
+      $("<img>")
+        .attr("src", currentIconURL)
+        .attr("alt", currentIconAlt)
+        .attr("width", 75)
     );
 
     // add city to local storage & search history
