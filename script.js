@@ -16,7 +16,7 @@ function updateHistory() {
   $("#history").empty();
   cities.history.forEach((city) => {
     // then create a new div with the city name name
-    const cityEl = $("<div>").addClass("p-2 bg-white border").text(city);
+    const cityEl = $("<div>").addClass("p-2 bg-white border city-history").text(city);
     // and add it to the history ID
     $("#history").append(cityEl);
   });
@@ -105,4 +105,9 @@ if (currentCity) {
 $("#search").click(function (event) {
   event.preventDefault();
   getWeather($("#city").val());
+});
+
+// search history event listener
+$("#history").on("click", ".city-history", function () {
+  getWeather($(this).text());
 });
