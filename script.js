@@ -1,7 +1,10 @@
 // Global Variables
 /* global moment from moment.js*/
 const apiKey = "8aeca2ffebc6962c43c0e96825f3d12b", // for openweathermap.org
-  units = "imperial"; // parameter to return degress F from API
+  units = "imperial", // parameter to return degress F from API
+  // from local storage...
+  currentCity = localStorage.getItem("current"); // city to display on load
+let cityHistory = localStorage.getItem("history"); // search history
 
 // Functions
 function getWeather(city) {
@@ -12,7 +15,6 @@ function getWeather(city) {
     url: currentURL,
     method: "GET",
   }).then(function (response) {
-    console.log("Current Weather API", response);
     const lat = response.coord.lat, // latitude for One Call API
       lon = response.coord.lon, // longitude for One Call API
       parts = "minutely,hourly", // parts to exclude in One Call API
@@ -28,12 +30,25 @@ function getWeather(city) {
       $("<img>").attr("src", currentIconURL).attr("alt", currentIconAlt)
     );
 
+    // add city to local storage & search history
+    localStorage.setItem("current", cityName);
+    if (cityHistory) {
+      // if cityHistory exists...
+      if (!cityHistory.includes(cityName)) {
+        // if cityName not in cityHistory..
+        cityHistory.unshift(cityName);
+      }
+    } else {
+      // cityHistory doesn't exist
+      cityHistory = [cityName]; // initilize array with cityName
+    }
+    localStorage.setItem("history", cityHistory);
+
     // openweathermap.org One Call API
     $.ajax({
       url: oneCallURL,
       method: "GET",
     }).then(function (response) {
-      console.log("One Call API", response);
       // update city current weather data
       $("#current-temp").text(response.current.temp.toFixed(1));
       $("#current-humid").text(response.current.humidity);
@@ -53,13 +68,26 @@ function getWeather(city) {
           // display that data on forecast card
           cardEl = $("<div>").addClass("card bg-primary text-light p-2");
 
+        // add data to the forecast card
         cardEl.append($("<p>").addClass("card-title").text(date));
-        cardEl.append($("<img>").attr("src", iconURL).attr("alt", iconAlt).attr("width", 50));
+        cardEl.append(
+          $("<img>").attr("src", iconURL).attr("alt", iconAlt).attr("width", 50)
+        );
         cardEl.append($("<p>").addClass("card-text small").html(temp));
         cardEl.append($("<p>").addClass("card-text small").text(humid));
 
+        // add forecast card to 5-day forecast div
         $("#forecast").append(cardEl);
       }
     });
   });
 }
+
+// Main
+// load last viewed city from local storage
+if (currentCity) {
+  getWeather(currentCity);
+} else {
+  getWeather("Raleigh");
+}
+// load city search history
