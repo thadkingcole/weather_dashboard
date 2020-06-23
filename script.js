@@ -57,11 +57,11 @@ function getWeather(city) {
       currentIconURL = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`,
       currentIconAlt = response.weather[0].description;
     let cityName = response.name;
-    
+
     if (city.includes(",")) {
-      stateCountry = city.split(",")
+      const stateCountry = city.split(",");
       for (let i = 1; i < stateCountry.length; i++) {
-        cityName += `, ${stateCountry[i].trim().toUpperCase()}`
+        cityName += `, ${stateCountry[i].trim().toUpperCase()}`;
       }
     }
     // display city name, date, & weather icon in main section header
@@ -140,7 +140,7 @@ if (currentCity) {
   getWeather("Raleigh, NC, US");
 }
 // show helpful toast
-$(document).ready(function() {
+$(document).ready(function () {
   $(".toast").toast("show");
 });
 
