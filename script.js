@@ -11,10 +11,13 @@ if (!cities) {
 
 // Functions
 function updateHistory() {
-  // clear history before update to prevent duplicates
+  // updates the cities listed in sidebar
+  // first clear history before update to prevent duplicates
   $("#history").empty();
   cities.history.forEach((city) => {
+    // then create a new div with the city name name
     const cityEl = $("<div>").addClass("p-2 bg-white border").text(city);
+    // and add it to the history ID
     $("#history").append(cityEl);
   });
 }
@@ -41,7 +44,7 @@ function getWeather(city) {
     $("#city-name").append(
       $("<img>").attr("src", currentIconURL).attr("alt", currentIconAlt)
     );
-    
+
     // add city to local storage & search history
     localStorage.setItem("current", cityName);
     if (!cities.history.includes(cityName)) {
@@ -66,11 +69,12 @@ function getWeather(city) {
       for (let i = 1; i <= 5; i++) {
         // start at 1 because 5 day forecast starts with tomorrow
         // get daily data from response
-        const date = moment.unix(response.daily[i].dt).format("MM/DD/YYYY"),
-          iconURL = `https://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}.png`,
-          iconAlt = response.daily[i].weather[0].description,
-          temp = `Temp: ${response.daily[i].temp.day.toFixed(1)} &deg;F`,
-          humid = `Humidity: ${response.daily[i].humidity}%`,
+        const data = response.daily[i],
+          date = moment.unix(data.dt).format("MM/DD/YYYY"),
+          iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+          iconAlt = data.weather[0].description,
+          temp = `Temp: ${data.temp.day.toFixed(1)} &deg;F`,
+          humid = `Humidity: ${data.humidity}%`,
           // display that data on forecast card
           cardEl = $("<div>").addClass("card bg-primary text-light p-2");
 
@@ -97,3 +101,8 @@ if (currentCity) {
   getWeather("Raleigh");
 }
 
+// search button event listener
+$("#search").click(function (event) {
+  event.preventDefault();
+  getWeather($("#city").val());
+});
