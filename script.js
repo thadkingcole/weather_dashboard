@@ -141,7 +141,7 @@ $("#history").on("click", ".city-history", function () {
 });
 
 // search history delete event listener
-$("#history").on("click", ".city-delete", function(event) {
+$("#history").on("click", ".city-delete", function (event) {
   event.stopPropagation();
   deleteCity($(this).parent().attr("data-city"));
-})
+});
