@@ -16,7 +16,9 @@ function updateHistory() {
   $("#history").empty();
   cities.history.forEach((city) => {
     // then create a new div with the city name name
-    const cityEl = $("<div>").addClass("p-2 bg-white border city-history").text(city);
+    const cityEl = $("<div>")
+      .addClass("p-2 bg-white border city-history")
+      .text(city);
     // and add it to the history ID
     $("#history").append(cityEl);
   });
@@ -64,6 +66,18 @@ function getWeather(city) {
       $("#current-humid").text(response.current.humidity);
       $("#wind").text(response.current.wind_speed);
       $("#UV").text(response.current.uvi);
+      // color-code UV index
+      if (response.current.uvi <= 5) {
+        // UV is low
+        $("#UV").removeClass("bg-danger bg-warning").addClass("bg-success");
+      } else if (response.current.uvi >= 8) {
+        // UV is high
+        $("#UV").removeClass("bg-success bg-warning").addClass("bg-danger");
+      } else {
+        // UV is middle
+        $("#UV").removeClass("bg-danger bg-success").addClass("bg-warning");
+      }
+
       // update 5-day forecast for city
       $("#forecast").empty(); // removes currently displayed 5-day forcast
       for (let i = 1; i <= 5; i++) {
