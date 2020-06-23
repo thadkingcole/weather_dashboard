@@ -26,7 +26,7 @@ function updateHistory() {
         .addClass(
           "text-danger px-1 float-right border border-danger rounded city-delete"
         )
-        .text("X")
+        .html("&times;")
     );
     // and add it to the history ID
     $("#history").append(cityEl);
@@ -57,7 +57,7 @@ function getWeather(city) {
       todaysDate = moment.unix(response.dt).format("MM/DD/YYYY"),
       currentIconURL = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`,
       currentIconAlt = response.weather[0].description;
-
+      
     // display city name, date, & weather icon in main section header
     $("#city-name").text(`${cityName} (${todaysDate})`);
     $("#city-name").append(
@@ -131,13 +131,19 @@ function getWeather(city) {
 if (currentCity) {
   getWeather(currentCity);
 } else {
-  getWeather("Raleigh");
+  getWeather("Raleigh, NC, US");
 }
+// show helpful toast
+$(document).ready(function() {
+  $(".toast").toast("show");
+});
 
+// add event listeners
 // search button event listener
 $("#search").click(function (event) {
   event.preventDefault();
   getWeather($("#city").val());
+  $("#city").val(""); // clears search field
 });
 
 // search history event listener
