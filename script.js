@@ -158,8 +158,23 @@ $(document).ready(function () {
 // search button event listener
 $("#search").click(function (event) {
   event.preventDefault();
-  getWeather($("#city").val());
-  $("#city").val(""); // clears search field
+  // get user input
+  const cityForm = $("#city").val(),
+    stateForm = $("#state").val(),
+    countryForm = $("#country").val();
+  let search4city = cityForm;
+  
+  if (stateForm) {
+    search4city = `${cityForm}, ${stateForm}, US`;
+  } else if (countryForm) {
+    search4city = `${cityForm}, ${countryForm}`;
+  }
+
+  getWeather(search4city);
+  // clear search fields
+  $("#city").val("");
+  $("#state").val("");
+  $("#country").val("");
 });
 
 // search history event listener

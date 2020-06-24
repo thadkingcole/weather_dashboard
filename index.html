@@ -29,44 +29,57 @@
     <!-- left of page -->
     <div class="container-fluid">
       <div class="row">
-        <aside class="col-3 bg-light">
+        <aside class="col-12 col-sm-4 col-md-3 bg-light">
           <!-- search for a city form -->
-          <form class="form-inline my-3">
-            <label class="lead" for="city">Search for a City:</label>
-            <input
-              id="city"
-              class="form-control"
-              type="text"
-              autofocus
-              placeholder="City, State, Country"
-            />
-            <button id="search" class="btn btn-primary" type="submit">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-            <!-- helpful toast -->
-            <div class="toast mt-2" data-autohide="false">
-              <div class="toast-header">
-                <strong>A Tale of 2 Cities (with the same name)</strong>
-                <button
-                  type="button"
-                  class="ml-2 mb-1 close"
-                  data-dismiss="toast"
-                >
-                  &times;
+          <form class="form-group my-3">
+            <h3>Search for a city:</h3>
+            <div class="input-group m-1">
+              <div class="input-group-prepend">
+                <span class="input-group-text">City:</span>
+              </div>
+              <input
+                id="city"
+                class="form-control"
+                type="text"
+                autofocus
+                placeholder="Raleigh"
+              />
+            </div>
+            <div class="input-group m-1 input-group-sm">
+              <div class="input-group-prepend">
+                <span class="input-group-text">State:</span>
+              </div>
+              <input
+                id="state"
+                class="form-control"
+                type="text"
+                maxlength="2"
+                size="2"
+                placeholder="NC"
+              />
+            </div>
+            <div class="input-group m-1 input-group-sm">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Country:</span>
+              </div>
+              <input
+                id="country"
+                class="form-control"
+                type="text"
+                maxlength="2"
+                size="2"
+                placeholder="US"
+              />
+              <div class="input-group-append">
+                <button id="search" class="btn btn-primary" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
-              </div>
-              <div class="toast-body">
-                Use the 2 letter abbreviation for state (if applicable) and
-                country to differentiate between cities that share the same
-                name.
-              </div>
-              <div class="toast-body">
-                e.g. "Albany, NY, US" or "Albany, GA, US"
               </div>
             </div>
           </form>
           <!-- history of cities searched -->
-          <div id="history" class="d-flex flex-column">
+          <h4 class="mt-5">Search History:</h4>
+          <div id="history" class="d-flex flex-column my-3">
             <div class="text-muted p-2 bg-white border city-history">
               City<span
                 class="px-1 float-right border border-danger rounded city-delete"
@@ -76,7 +89,7 @@
           </div>
         </aside>
         <!-- right of page -->
-        <main class="col-9">
+        <main class="col-12 col-sm-8 col-md-9">
           <!-- selected city weather data -->
           <div class="row">
             <div class="col-11 border my-3 ml-3 mr-auto p-3">
