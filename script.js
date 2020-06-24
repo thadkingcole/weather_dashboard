@@ -109,21 +109,31 @@ function getWeather(city) {
         // start at 1 because 5 day forecast starts with tomorrow
         // get daily data from response
         const data = response.daily[i],
-          date = moment.unix(data.dt).format("MM/DD/YYYY"),
+          date = moment.unix(data.dt).format("MM/DD/YY"),
           iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
           iconAlt = data.weather[0].description,
           temp = `Temp: ${data.temp.day.toFixed(1)} &deg;F`,
           humid = `Humidity: ${data.humidity}%`,
           // display that data on forecast card
-          cardEl = $("<div>").addClass("card bg-primary text-light p-2");
+          cardEl = $("<div>").addClass(
+            "card bg-primary text-light p-2 m-2 mx-md-auto"
+          );
 
         // add data to the forecast card
-        cardEl.append($("<p>").addClass("card-title").text(date));
+        cardEl.append($("<p>").addClass("card-text text-center").text(date));
         cardEl.append(
-          $("<img>").attr("src", iconURL).attr("alt", iconAlt).attr("width", 50)
+          $("<img>")
+            .attr("src", iconURL)
+            .attr("alt", iconAlt)
+            .attr("width", 50)
+            .addClass("mx-auto d-block")
         );
-        cardEl.append($("<p>").addClass("card-text small").html(temp));
-        cardEl.append($("<p>").addClass("card-text small").text(humid));
+        cardEl.append(
+          $("<p>").addClass("card-text text-center small").html(temp)
+        );
+        cardEl.append(
+          $("<p>").addClass("card-text text-center small").text(humid)
+        );
 
         // add forecast card to 5-day forecast div
         $("#forecast").append(cardEl);

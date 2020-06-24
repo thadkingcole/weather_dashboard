@@ -47,11 +47,18 @@
             <div class="toast mt-2" data-autohide="false">
               <div class="toast-header">
                 <strong>A Tale of 2 Cities (with the same name)</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                <button
+                  type="button"
+                  class="ml-2 mb-1 close"
+                  data-dismiss="toast"
+                >
+                  &times;
+                </button>
               </div>
               <div class="toast-body">
                 Use the 2 letter abbreviation for state (if applicable) and
-                country to differentiate between cities that share the same name.
+                country to differentiate between cities that share the same
+                name.
               </div>
               <div class="toast-body">
                 e.g. "Albany, NY, US" or "Albany, GA, US"
@@ -72,7 +79,7 @@
         <main class="col-9">
           <!-- selected city weather data -->
           <div class="row">
-            <div class="col-11 border my-3 mx-auto p-3">
+            <div class="col-11 border my-3 ml-3 mr-auto p-3">
               <h2 id="city-name">City (MM/DD/YYYY) {icon}</h2>
               <p>Temperature: <span id="current-temp">##.##</span> &deg;F</p>
               <p>Humidity: <span id="current-humid">##</span>%</p>
@@ -89,41 +96,56 @@
           <div class="row">
             <div class="col-12">
               <h3>5-day Forecast:</h3>
-              <div id="forecast" class="card-deck">
+              <div id="forecast" class="d-flex flex-wrap">
                 <!-- day 1 -->
-                <div id="day1" class="card bg-primary text-light p-2">
-                  <p class="card-title">MM/D1/YYYY</p>
-                  <img src="#" alt="icon" width="50" />
-                  <p class="card-text small">Temp: ##.# &deg;F</p>
-                  <p class="card-text small">Humidity: ##%</p>
+                <div
+                  id="day1"
+                  class="card bg-primary text-light p-2 m-2 mx-md-auto"
+                >
+                  <p class="card-text text-center">MM/D1/YY</p>
+                  <img class="mx-auto d-block" src="#" alt="icon" width="50" />
+                  <p class="card-text text-center small">Temp: ##.# &deg;F</p>
+                  <p class="card-text text-center small">Humidity: ##%</p>
                 </div>
                 <!-- day 2 -->
-                <div id="day2" class="card bg-primary text-light p-2">
-                  <p class="card-title">MM/D2/YYYY</p>
-                  <img src="#" alt="icon" width="50" />
-                  <p class="card-text small">Temp: ##.# &deg;F</p>
-                  <p class="card-text small">Humidity: ##%</p>
+                <div
+                  id="day2"
+                  class="card bg-primary text-light p-2 m-2 mx-md-auto"
+                >
+                  <p class="card-text text-center">MM/D2/YY</p>
+                  <img class="mx-auto d-block" src="#" alt="icon" width="50" />
+                  <p class="card-text text-center small">Temp: ##.# &deg;F</p>
+                  <p class="card-text text-center small">Humidity: ##%</p>
                 </div>
                 <!-- day 3 -->
-                <div id="day3" class="card bg-primary text-light p-2">
-                  <p class="card-title">MM/D3/YYYY</p>
-                  <img src="#" alt="icon" width="50" />
-                  <p class="card-text small">Temp: ##.# &deg;F</p>
-                  <p class="card-text small">Humidity: ##%</p>
+                <div
+                  id="day3"
+                  class="card bg-primary text-light p-2 m-2 mx-md-auto"
+                >
+                  <p class="card-text text-center">MM/D3/YY</p>
+                  <img class="mx-auto d-block" src="#" alt="icon" width="50" />
+                  <p class="card-text text-center small">Temp: ##.# &deg;F</p>
+                  <p class="card-text text-center small">Humidity: ##%</p>
                 </div>
                 <!-- day 4 -->
-                <div id="day4" class="card bg-primary text-light p-2">
-                  <p class="card-title">MM/D4/YYYY</p>
-                  <img src="#" alt="icon" width="50" />
-                  <p class="card-text small">Temp: ##.# &deg;F</p>
-                  <p class="card-text small">Humidity: ##%</p>
+                <div
+                  id="day4"
+                  class="card bg-primary text-light p-2 m-2 mx-md-auto"
+                >
+                  <p class="card-text text-center">MM/D4/YY</p>
+                  <img class="mx-auto d-block" src="#" alt="icon" width="50" />
+                  <p class="card-text text-center small">Temp: ##.# &deg;F</p>
+                  <p class="card-text text-center small">Humidity: ##%</p>
                 </div>
                 <!-- day 5 -->
-                <div id="day5" class="card bg-primary text-light p-2">
-                  <p class="card-title">MM/D5/YYYY</p>
-                  <img src="#" alt="icon" width="50" />
-                  <p class="card-text small">Temp: ##.# &deg;F</p>
-                  <p class="card-text small">Humidity: ##%</p>
+                <div
+                  id="day5"
+                  class="card bg-primary text-light p-2 m-2 mx-md-auto"
+                >
+                  <p class="card-text text-center">MM/D5/YY</p>
+                  <img class="mx-auto d-block" src="#" alt="icon" width="50" />
+                  <p class="card-text text-center small">Temp: ##.# &deg;F</p>
+                  <p class="card-text text-center small">Humidity: ##%</p>
                 </div>
               </div>
             </div>
