@@ -163,7 +163,7 @@ $("#search").click(function (event) {
     stateForm = $("#state").val(),
     countryForm = $("#country").val();
   let search4city = cityForm;
-  
+
   if (stateForm) {
     search4city = `${cityForm}, ${stateForm}, US`;
   } else if (countryForm) {
