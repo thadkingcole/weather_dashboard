@@ -6,7 +6,7 @@ A simple weather dashboard that shows the user the weather outlook for multiple 
 
 [![main page](./images/01_main.png)](https://thadkingcole.github.io/weather_dashboard)
 
-# Table of Contents
+## Table of Contents
 
 - [Usage](#usage)
   - [Getting Started](#Getting-Started)
@@ -15,9 +15,9 @@ A simple weather dashboard that shows the user the weather outlook for multiple 
 - [Credits](#Credits)
 - [License](#license)
 
-# Usage
+## Usage
 
-## Getting Started
+### Getting Started
 
 First, navigate to <https://thadkingcole.github.io/weather_dashboard>
 
@@ -25,7 +25,7 @@ If this is your first time visiting the page, the weather for Raleigh, NC will b
 
 [Back to top](#Weather-dashboard)
 
-## Searching for a New City
+### Searching for a New City
 
 To find the weather of a new city, simply type in that city into the search bar and hit enter or press the blue search button.
 
@@ -35,7 +35,7 @@ You can help narrow the search by including the 2 letter state abbreviation (if 
 
 [Back to top](#Weather-dashboard)
 
-## Search History
+### Search History
 
 With each city you find, it will be added to your search history directly below the search bar on the left side of the page.
 
@@ -47,13 +47,13 @@ To view the weather for any of the cities in your search history, simply click o
 
 [Back to top](#Weather-dashboard)
 
-# Credits
+## Credits
 
 Thanks to [OpenWeather](https://openweathermap.org/) and their [suite of APIs](https://openweathermap.org/api).
 
 [Back to top](#Weather-dashboard)
 
-# License
+## License
 
 [GPL 3.0](LICENSE)
 
