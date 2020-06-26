@@ -159,9 +159,9 @@ $(document).ready(function () {
 $("#search").click(function (event) {
   event.preventDefault();
   // get user input
-  const cityForm = $("#city").val(),
-    stateForm = $("#state").val(),
-    countryForm = $("#country").val();
+  const cityForm = $("#city").val().trim(),
+    stateForm = $("#state").val().trim(),
+    countryForm = $("#country").val().trim();
   let search4city = cityForm;
 
   if (stateForm) {
